@@ -1,12 +1,15 @@
-resource "aws_s3_bucket" "main" {}
+resource "aws_s3_bucket" "main" {
+  bucket_prefix  = "${aws_s3_bucket.main.bucket}__athena"
+}
 
 resource "aws_athena_database" "main" {
-  name   = "${var.name}"
-  bucket = "${aws_s3_bucket.main.id}"
+  name   = var.name
+  bucket = aws_s3_bucket.main.id
 }
 
 resource "aws_athena_named_query" "main" {
   name     = "${var.name}-create-table"
-  database = "${aws_athena_database.main.name}"
-  query    = "${data.template_file.main.rendered}"
+  database = aws_athena_database.main.name
+  query    = data.template_file.main.rendered
 }
+
