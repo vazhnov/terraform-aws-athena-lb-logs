@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "main" {
-  bucket_prefix  = "${aws_s3_bucket.main.bucket}__athena"
+  bucket_prefix  = "${var.s3_bucket_name}__athena"
 }
 
 resource "aws_athena_database" "main" {
