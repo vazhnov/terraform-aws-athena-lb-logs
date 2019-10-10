@@ -12,6 +12,7 @@ data "template_file" "main" {
     account_id = data.aws_caller_identity.main.account_id
     region     = data.aws_region.main.name
     instance   = var.lb_name
+    lb_name    = var.lb_name
   }
 }
 
