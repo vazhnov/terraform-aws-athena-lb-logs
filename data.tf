@@ -11,6 +11,7 @@ data "template_file" "main" {
     bucket     = var.s3_bucket_name
     account_id = data.aws_caller_identity.main.account_id
     region     = data.aws_region.main.name
+    instance   = var.lb_name
   }
 }
 
